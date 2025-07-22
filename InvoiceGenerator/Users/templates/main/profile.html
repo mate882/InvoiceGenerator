@@ -1,0 +1,76 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}?v=4">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<div class="profile-container">
+    <div class="profile-header">
+        <a href="{% url 'home' %}" class="home-link">Home</a>
+        <a href="{% url 'logout' %}" class="logout-link">Logout</a>
+        
+        <form method="POST" enctype="multipart/form-data" id="uploadForm" class="profile-pic-container">
+            {% csrf_token %}
+            <input type="file" id="profileInput" name="profile_pic" accept="image/*" style="display: none;" onchange="document.getElementById('uploadForm').submit();">
+            <label for="profileInput">
+                {% if request.user.profile_pic %}
+                    <img src="{{ request.user.profile_pic.url }}" alt="Profile Picture">
+                {% else %}
+                    <img src="{% static 'images/default-avatar.webp' %}" alt="Default Picture">
+                {% endif %}
+            </label>
+        </form>
+        
+        <form method="POST" action="{% url 'delete_profile_pic' %}">
+            {% csrf_token %}
+            <button type="submit" class="delete-pic-btn" onclick="return confirm('Are you sure you want to delete your profile picture?');" {% if not request.user.profile_pic %} disabled {% endif %}>
+                Delete Picture
+            </button>
+        </form>
+    </div>
+    
+    <div class="user-info">
+        <div class="info-item">
+            <strong>ID</strong>
+            <p>{{ user.id }}</p>
+        </div>
+        <div class="info-item">
+            <strong>Date of Joining</strong>
+            <p>{{ user.date_joined }}</p>
+        </div>
+        <div class="info-item">
+            <strong>Email</strong>
+            <p>{{ user.email }}</p>
+        </div>
+    </div>
+    
+    {% if company_profile %}
+        <hr>
+        <div class="company-section">
+            <h2>Company Information</h2>
+            <div class="company-info">
+                <p><strong>Name:</strong> {{ company_profile.name }}</p>
+                <p><strong>Address:</strong> {{ company_profile.address }}</p>
+                <p><strong>Phone:</strong> {{ company_profile.phone }}</p>
+                <p><strong>Email:</strong> {{ company_profile.email }}</p>
+            </div>
+            
+            <div class="payment-details">
+                <h3>Payment Details</h3>
+                <div class="company-info">
+                    <p><strong>Bank:</strong> {{ company_profile.bank_name }}</p>
+                    <p><strong>Account Name:</strong> {{ company_profile.bank_account_name }}</p>
+                    <p><strong>IBAN:</strong> {{ company_profile.iban }}</p>
+                    <p><strong>SWIFT Code:</strong> {{ company_profile.swift_code }}</p>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <hr>
+        <div class="no-company">
+            <p>No company profile found.</p>
+            <a href="{% url 'invoice:profile_and_company_edit' %}" class="create-company-btn">
+                Create Company Profile
+            </a>
+        </div>
+    {% endif %}
+</div>

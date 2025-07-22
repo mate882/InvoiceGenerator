@@ -1,0 +1,71 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/create.css' %}?v=4">
+
+<a href="{% url 'home' %}">HOME</a>
+
+<form method="POST" id="invoice-form">
+    {% csrf_token %}
+
+    <label for="invoice_number">Invoice Number</label><br>
+    <input type="text" id="invoice_number" name="invoice_number" required><br><br>
+
+    <label for="date">Date</label><br>
+    <input type="date" id="date" name="date" required><br><br>
+
+    <label for="due_date">Due Date</label><br>
+    <input type="date" id="due_date" name="due_date" required><br><br>
+
+    <label for="client_name">Client Name</label><br>
+    <input type="text" id="client_name" name="client_name" required><br><br>
+
+    <label for="client_address">Client Address</label><br>
+    <textarea id="client_address" name="client_address" required></textarea><br><br>
+
+    <label for="client_email">Client Email</label><br>
+    <input type="email" id="client_email" name="client_email" required><br><br>
+
+    <label for="payment_terms">Payment Terms</label><br>
+    <textarea id="payment_terms" name="payment_terms" required></textarea><br><br>
+
+    <p>Items</p>
+    <div id="items-container">
+        <div class="item">
+            <label for="item_description_1">Description</label><br>
+            <input type="text" id="item_description_1" name="item_description_1"><br><br>
+
+            <label for="item_quantity_1">Quantity</label><br>
+            <input type="number" id="item_quantity_1" name="item_quantity_1" min="0" step="1"><br><br>
+
+            <label for="item_unit_price_1">Unit Price</label><br>
+            <input type="number" id="item_unit_price_1" name="item_unit_price_1" min="0" step="0.01"><br><br>
+
+            <label for="item_currency_1">Currency</label><br>
+            <select id="item_currency_1" name="item_currency_1">
+                <option value="USD" selected>USD ($)</option>
+                <option value="EUR">EUR (€)</option>
+                <option value="GBP">GBP (£)</option>
+                <option value="TRY">TRY (₺)</option>
+            </select><br><br>
+        </div>
+    </div>
+
+    <input type="hidden" name="item_count" id="item-count" value="1">
+
+    <button type="button" id="add">ADD</button>
+    <button type="button" id="reset">RESET</button><br><br>
+
+    <label for="subtotal">Subtotal</label><br>
+    <input type="text" id="subtotal" name="subtotal" readonly>
+
+    <label for="tax">Tax</label><br>
+    <input type="number" id="tax" name="tax" step="0.01" min="0" value="0"><br><br>
+
+    <label for="total_due">Total Due</label><br>
+    <input type="text" id="total_due" name="total_due" readonly><br><br>
+
+    <button type="submit">Create Invoice</button>
+
+</form>
+
+<script src="{% static 'javascript/create.js' %}"></script>

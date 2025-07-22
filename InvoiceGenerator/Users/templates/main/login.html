@@ -1,0 +1,92 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Login{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}?v=2">
+</head>
+<body class="login-body">
+
+    {% block content %}      
+    <nav class="nav-bar">
+        <ul>
+            <li>
+                <a class="nav-link" href="{% url 'home' %}">🏠 Home</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="content-wrapper">
+        <div class="form-container">
+            <h2 class="form-title">🔐 Welcome Back</h2>
+            <p class="welcome-message">Please sign in to your account</p>
+            
+            <form method="post" id="loginForm">
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                    <p class="error-message">❌ {{ form.non_field_errors.0 }}</p>
+                {% endif %}
+
+                <div class="form-group email">
+                    {{ form.email.label_tag }}
+                    {{ form.email }}
+                    {% if form.email.errors %}
+                        <p class="error-message">❌ {{ form.email.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="form-group password">
+                    {{ form.password.label_tag }}
+                    {{ form.password }}
+                    {% if form.password.errors %}
+                        <p class="error-message">❌ {{ form.password.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="remember-me">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+
+                <button type="submit" class="login-btn" id="loginBtn">
+                    🚀 Sign In
+                </button>
+            </form>
+
+            <div class="divider">
+                <span>or</span>
+            </div>
+
+            <div class="form-footer">
+                <a href="{% url 'register' %}" class="muted-link">✨ Create new account</a>
+                <br>
+                <a href="{% url 'password_reset' %}" class="muted-link">🔑 Forgot password?</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function() {
+            const btn = document.getElementById('loginBtn');
+            btn.classList.add('loading');
+            btn.textContent = 'Signing in...';
+        });
+
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'scale(1.02)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+
+    {% endblock %}
+</body>
+</html>

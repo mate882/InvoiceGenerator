@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Create Account{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/register.css' %}?v=2">
+</head>
+<body class="login-body">
+
+    {% block content %}
+    <nav class="nav-bar">
+        <ul>
+            <li><a class="nav-link" href="{% url 'home' %}">🏠 Home</a></li>
+        </ul>
+    </nav>
+
+    <div class="content-wrapper">
+        <div class="form-container">
+            <h2 class="form-title">✨ Create Account</h2>
+            
+            <div class="messages">
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                            <p class="error-message">❌ {{ message }}</p>
+                        {% elif message.tags == 'success' %}
+                            <p class="success-message">✅ {{ message }}</p>
+                        {% else %}
+                            <p class="error-message">{{ message }}</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <button type="submit" class="login-btn">
+                    🚀 Create My Account
+                </button>
+            </form>
+
+            <div class="form-footer">
+                <a href="{% url 'login' %}" class="muted-link">Already have an account? Sign in</a>
+                <br><br>
+                <a href="{% url 'resend_activation' %}" class="muted-link">📧 Resend activation link</a>  
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+</body>
+</html>

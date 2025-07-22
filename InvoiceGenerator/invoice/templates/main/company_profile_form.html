@@ -1,0 +1,13 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/company_profile.css' %}?v=2">
+
+<a href="{% url 'home' %}">HOME</a>
+
+<h1>Company Profile</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>

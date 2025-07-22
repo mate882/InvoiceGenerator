@@ -1,0 +1,292 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+a {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    color: white;
+    text-decoration: none;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(79, 172, 254, 0.3);
+    z-index: 1000;
+}
+
+a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    font-size: 32px;
+    font-weight: 700;
+    margin: 80px 0 40px 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    border-radius: 2px;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    padding: 40px;
+    backdrop-filter: blur(10px);
+}
+
+form p {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+form label {
+    display: block;
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="tel"],
+form textarea {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    font-size: 16px;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+    color: #2c3e50;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="tel"]:focus,
+form textarea:focus {
+    outline: none;
+    border-color: #4facfe;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
+    transform: translateY(-2px);
+}
+
+form input[type="text"]:hover,
+form input[type="email"]:hover,
+form input[type="tel"]:hover,
+form textarea:hover {
+    border-color: #4facfe;
+    background: white;
+}
+
+form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+form input::placeholder,
+form textarea::placeholder {
+    color: #adb5bd;
+    font-style: italic;
+}
+
+form button[type="submit"] {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    border: none;
+    padding: 18px 40px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(79, 172, 254, 0.3);
+    display: block;
+    margin: 30px auto 0 auto;
+    min-width: 200px;
+}
+
+form button[type="submit"]:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(79, 172, 254, 0.4);
+}
+
+form button[type="submit"]:active {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px rgba(79, 172, 254, 0.3);
+}
+
+form p:nth-child(2) input,
+form p:nth-child(3) input,
+form p:nth-child(4) input,
+form p:nth-child(5) input {
+    position: relative;
+}
+
+form p:nth-child(2)::before {
+    content: '🏢';
+    position: absolute;
+    right: 15px;
+    top: 38px;
+    font-size: 18px;
+    pointer-events: none;
+}
+
+form p:nth-child(3)::before {
+    content: '📍';
+    position: absolute;
+    right: 15px;
+    top: 38px;
+    font-size: 18px;
+    pointer-events: none;
+}
+
+form p:nth-child(4)::before {
+    content: '📞';
+    position: absolute;
+    right: 15px;
+    top: 38px;
+    font-size: 18px;
+    pointer-events: none;
+}
+
+form p:nth-child(5)::before {
+    content: '✉️';
+    position: absolute;
+    right: 15px;
+    top: 38px;
+    font-size: 18px;
+    pointer-events: none;
+}
+
+form p:nth-child(6)::before {
+    content: '🏦';
+    position: absolute;
+    right: 15px;
+    top: 68px;
+    font-size: 18px;
+    pointer-events: none;
+}
+
+form p:nth-child(7)::before {
+    content: '👤';
+    position: absolute;
+    right: 15px;
+    top: 38px;
+    font-size: 18px;
+    pointer-events: none;
+}
+
+form p:nth-child(8)::before {
+    content: '🏧';
+    position: absolute;
+    right: 15px;
+    top: 38px;
+    font-size: 18px;
+    pointer-events: none;
+}
+
+form p:nth-child(9)::before {
+    content: '🌐';
+    position: absolute;
+    right: 15px;
+    top: 38px;
+    font-size: 18px;
+    pointer-events: none;
+}
+
+form p:first-child {
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+form p:nth-child(6) {
+    border-top: 2px solid #e9ecef;
+    padding-top: 30px;
+    margin-top: 30px;
+    position: relative;
+}
+
+form p:nth-child(6)::after {
+    content: 'Payment Information';
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: white;
+    color: #4facfe;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 0 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.errorlist {
+    list-style: none;
+    margin: 5px 0 0 0;
+    padding: 0;
+}
+
+.errorlist li {
+    color: #e74c3c;
+    font-size: 14px;
+    background: #fff5f5;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border-left: 3px solid #e74c3c;
+    margin-top: 5px;
+}
+
+.helptext {
+    font-size: 12px;
+    color: #6c757d;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+form input:invalid {
+    border-color: #e74c3c;
+}
+
+form input:valid {
+    border-color: #27ae60;
+}

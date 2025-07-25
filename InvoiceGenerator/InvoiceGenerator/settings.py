@@ -28,8 +28,12 @@ SECRET_KEY = 'django-insecure-6rly=ob8yzc(b*cnw3p6nlo0)*#qi&qrn=r9d_t983=9)qr*c8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [
+    '.onrender.com',
+    '127.0.0.1',
+    'localhost',
+    os.getenv('RENDER_EXTERNAL_HOSTNAME'),
+]
 
 # Application definition
 
@@ -83,11 +87,11 @@ WSGI_APPLICATION = 'InvoiceGenerator.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv("DB_NAME"),
-        'USER': os.getenv("DB_USER"),
-        'PASSWORD': os.getenv("DB_PASSWORD"),
-        'HOST': os.getenv("DB_HOST"),
-        'PORT': os.getenv("DB_PORT"),
+        'NAME': config("DB_NAME"),
+        'USER': config("DB_USER"),
+        'PASSWORD': config("DB_PASSWORD"),
+        'HOST': config("DB_HOST"),
+        'PORT': config("DB_PORT"),
     }
 }
 

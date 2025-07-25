@@ -18,7 +18,6 @@ db.sqlite3
 *.db
 *.log
 media/
-local_settings.py
 .env
 .env.*
 
